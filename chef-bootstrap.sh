@@ -49,15 +49,11 @@ cat > /tmp/chef-server.json <<EOF
 {
   "bootstrap": {
     "chef": {
-      "url_type": "http",
-      "init_style": "runit",
-      "path": "/srv/chef",
-      "serve_path": "/srv/chef",
       "server_fqdn": "$server_fqdn",
       "webui_enabled": true
     }
   },
-  "run_list": [ "recipe[bootstrap::server]" ]
+  "run_list": [ "recipe[chef::bootstrap_server]" ]
 }
 EOF
 
@@ -66,14 +62,10 @@ cat > /tmp/chef-client.json <<EOF
 {
   "bootstrap": {
     "chef": {
-      "url_type": "http",
-      "init_style": "runit",
-      "path": "/srv/chef",
-      "serve_path": "/srv/chef",
       "server_fqdn": "$server_fqdn"
     }
   },
-  "run_list": [ "recipe[bootstrap::client]" ]
+  "run_list": [ "recipe[chef::bootstrap_client]" ]
 }
 EOF
 
