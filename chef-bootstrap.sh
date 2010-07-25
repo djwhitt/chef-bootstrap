@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-rubygems_version="1.3.6"
+rubygems_version="1.3.7"
 
 function usage {
     echo "usage: $0 <client|server> <server-fqdn>"
