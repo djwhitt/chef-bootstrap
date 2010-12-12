@@ -3,24 +3,24 @@
 rubygems_version="1.3.7"
 
 function usage {
-    echo "usage: $0 <client|server> <server-fqdn>"
+    echo "usage: $0 <client|server> <server-url>"
 }
 
 if [[ $# != 2 ]]; then
-    usage 
+    usage
     exit
 fi
 
 if [[ $1 != 'server' && $1 != 'client' ]]; then
-    usage 
+    usage
     exit
 fi
 
 bootstrap_type="$1"
-server_fqdn="$2"
+server_url="$2"
 
-# Install packages needed for Ruby + Rubygems
-aptitude install ruby ruby1.8-dev libopenssl-ruby1.8 rdoc ri irb build-essential wget ssl-cert
+# Install required packages
+apt-get install ruby ruby-dev libopenssl-ruby build-essential wget ssl-cert
 
 # Install Rubygems from source
 cd /tmp
@@ -29,7 +29,7 @@ tar xzf "rubygems-${rubygems_version}.tgz"
 cd "rubygems-${rubygems_version}"
 ruby setup.rb -q --no-format-executable
 
-# Disable Rubygems Rdoc and RI generation 
+# Disable Rubygems RDoc and RI generation
 cat > /etc/gemrc <<EOF
 gem: --no-ri --no-rdoc
 EOF
@@ -49,7 +49,7 @@ cat > /tmp/chef-server.json <<EOF
 {
   "bootstrap": {
     "chef": {
-      "server_fqdn": "$server_fqdn",
+      "server_url": "$server_url",
       "webui_enabled": true
     }
   },
@@ -62,7 +62,7 @@ cat > /tmp/chef-client.json <<EOF
 {
   "bootstrap": {
     "chef": {
-      "server_fqdn": "$server_fqdn"
+      "server_url": "$server_url"
     }
   },
   "run_list": [ "recipe[chef::bootstrap_client]" ]
