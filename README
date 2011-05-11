@@ -1,1 +1,6 @@
+Not maintained. Use "knife bootstrap" instead:
+http://wiki.opscode.com/display/chef/Knife+Bootstrap
+
+---
+
 A simple script for bootstrapping Chef servers and clients.
