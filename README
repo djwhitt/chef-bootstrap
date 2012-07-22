@@ -1,5 +1,8 @@
-Not maintained. Use "knife bootstrap" instead:
-http://wiki.opscode.com/display/chef/Knife+Bootstrap
+Not maintained.
+
+Use one of these instead:
+- http://wiki.opscode.com/display/chef/Installing+Omnibus+Chef+Client+on+Linux+and+Mac
+- http://wiki.opscode.com/display/chef/Knife+Bootstrap
 
 ---
 
